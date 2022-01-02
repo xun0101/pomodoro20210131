@@ -1,15 +1,58 @@
 <template>
-  <div id="app">
-    <b-navbar toggleable="lg" type="dark" variant="info" style=" display: flex; flex-direction: column; height: 100vh; width: 3vw;" >
-      <b-navbar-nav style=" display: flex; flex-direction: column; justify-content: center; height: 100vh;">
-        <b-button v-b-toggle.sidebar-1 > <img src="../image/icon-list.svg"> </b-button>
-    <b-sidebar id="sidebar-1" title="Sidebar" shadow >
-      <div class=" px-3 py-2">
-        <img src="../image/icon-list.svg">
-      </div>
-    </b-sidebar>
+  <div id="app" class="d-flex">
+    <b-navbar toggleable="lg" type="dark" variant="light" class=" d-flex flex-column h-100 left" >
+      <b-navbar-nav class=" d-flex justify-content-center h-100 flex-column" >
+        <b-nav-item href="../views/List.vue"> <img src="../image/icon-list.svg"> </b-nav-item>
         <b-nav-item href="#"> <img src="../image/icon-analysis.svg"> </b-nav-item>
       </b-navbar-nav>
   </b-navbar>
+  <div class="d-flex flex-column justify-content-between w-100 align-items-center mt-5">
+    <b-row class="w-75">
+      <b-col class="time">
+        <span>25</span>
+        :
+        <span>00</span>
+      </b-col>
+      <b-col class="text">
+        <h1>無待辦事項</h1>
+      </b-col>
+    </b-row>
+    <img class="tomato" src="../image/tomato--orange.svg" >
+  </div>
   </div>
 </template>
+
+<style>
+#app{
+  background-color: #304030;
+  height: 100vh;
+}
+.left{
+  width: 80px;
+}
+
+.time{
+width: 451px;
+height: 252px;
+text-align: left;
+font: normal normal normal 200px/252px Fjalla One;
+letter-spacing: 0px;
+color: #E8E8E8;
+opacity: 1;
+}
+
+.text{
+width: 272px;
+height: 47px;
+text-align: left;
+font: normal normal medium 32px/47px Noto Sans TC;
+letter-spacing: 0px;
+color: #E8E8E8;
+opacity: 1;
+line-height: center;
+}
+.tomato{
+  width: 1200px;
+}
+
+</style>
