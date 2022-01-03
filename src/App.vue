@@ -2,8 +2,8 @@
   <div id="app" class="d-flex">
     <b-navbar toggleable="lg" type="dark" variant="light" class=" d-flex flex-column h-100 left" >
       <b-navbar-nav class=" d-flex justify-content-center h-100 flex-column" >
-        <b-nav-item href="../views/List.vue"> <img src="../image/icon-list.svg"> </b-nav-item>
-        <b-nav-item href="#"> <img src="../image/icon-analysis.svg"> </b-nav-item>
+        <b-nav-item> <router-link to="/list"> <img src="./assets/image/icon-list.svg"> </router-link> </b-nav-item>
+        <b-nav-item href="#"> <img src="./assets/image/icon-analysis.svg"> </b-nav-item>
       </b-navbar-nav>
   </b-navbar>
   <div class="d-flex flex-column justify-content-between w-100 align-items-center mt-5">
@@ -17,7 +17,7 @@
         <h1>無待辦事項</h1>
       </b-col>
     </b-row>
-    <img class="tomato" src="../image/tomato--orange.svg" >
+    <img class="tomato" src="./assets/image/tomato--orange.svg" >
   </div>
   </div>
 </template>
