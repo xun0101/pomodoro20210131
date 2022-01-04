@@ -1,11 +1,5 @@
 <template>
-  <div id="list" class="d-flex">
-    <b-navbar toggleable="lg" type="dark" variant="light" class=" d-flex flex-column h-100 left" >
-      <b-navbar-nav class=" d-flex justify-content-center h-100 flex-column" >
-        <b-nav-item> <router-link to="/"><img src="../assets/image/icon-list.svg"></router-link> </b-nav-item>
-        <b-nav-item href="#"> <img src="../assets/image/icon-analysis.svg"> </b-nav-item>
-      </b-navbar-nav>
-  </b-navbar>
+  <div id="list" class="d-flex w-100">
   <div class="d-flex flex-column justify-content-between w-100 align-items-center mt-5">
     <b-row class="w-75">
       <b-col class="time">
