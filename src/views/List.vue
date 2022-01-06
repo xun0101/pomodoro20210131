@@ -1,18 +1,10 @@
 <template>
   <div id="list" class="d-flex w-100">
-  <div class="d-flex flex-column justify-content-between w-100 align-items-center mt-5">
-    <b-row class="w-75">
-      <b-col class="time">
-        <span>24</span>
-        :
-        <span>00</span>
+    <b-row>
+      <b-col>
       </b-col>
-      <b-col class="text">
-        <h1>無待辦事項</h1>
-      </b-col>
+      <b-col></b-col>
     </b-row>
-    <img class="tomato" src="../assets/image/tomato--green.svg" >
-  </div>
   </div>
 </template>
 
@@ -50,3 +42,6 @@ line-height: center;
 }
 
 </style>
+
+<script>
+</script>
