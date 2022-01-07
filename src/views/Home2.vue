@@ -1,24 +1,28 @@
-<template lang="pug">
-#home.d-flex.w-100
-  .d-flex.flex-column.justify-content-between.w-100.align-items-center.mt-5
-    b-row.w-75
-      b-col.d-flex.flex-column.justify-content-between.align-items-center
-        .time.h-100.w-100.d-flex.justify-content-center
-          span {{ timeText }}
-        .d-flex.align-items-center.justify-content-around.mt-5.w-50
-          button.btn.rounded-circle.btn-outline-light.bell
-            img.img-fluid(src='../assets/image/icon-bell.svg')
-          button.btn.rounded-circle.play(v-if='status !== 1' @click='start')
-            img(src='../assets/image/icon-play--orange.svg')
-          button.btn.rounded-circle.play(v-else @click='pause')
-            img(src='../assets/image/icon-play--green.svg')
-          button.btn.rounded-circle.btn-outline-light.bell
-            img.img-fluid(src='../assets/image/icon-delete.svg')
-      b-col.text
-        h1 {{ currentText }}
-    img.tomato(src='../assets/image/tomato--orange.svg')
+<template>
+<div id="settings">
+        <div class="d-flex flex-column justify-content-between w-100 align-items-center mt-5">
+    <b-row class="w-75">
+      <b-col class="d-flex flex-column justify-content-between align-items-center">
+        <div class="time h-100 w-100 d-flex justify-content-center">
+        <span>{{ timeText }}</span>
+        </div>
+        <div class="d-flex align-items-center justify-content-around mt-5 w-50">
+          <button class="btn rounded-circle btn-outline-light bell"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
+          <button  v-if="status !== 1" @click="start" class="btn rounded-circle play"><img src="../assets/image/icon-play--orange.svg"></button>
+          <button  v-else @click="pause" class="btn rounded-circle play"><img src="../assets/image/icon-play--green.svg"></button>
+          <button  class="btn rounded-circle btn-outline-light bell"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
+        </div>
+      </b-col>
+      <b-col class="text">
+        <h1>{{ currentText }}</h1>
+      </b-col>
+    </b-row>
+    <img class="tomato" src="../assets/image/tomato--orange.svg" >
+  </div>
+</div>
 </template>
-<!-- <style>
+
+<style>
 #home{
   background-color: #304030;
   height: 100vh;
@@ -68,7 +72,7 @@ height: 48px;
 border: 2px solid #E8E8E8;
 opacity: 1;
 }
-</style> -->
+</style>
 
 <script>
 export default {

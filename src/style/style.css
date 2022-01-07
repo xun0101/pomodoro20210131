@@ -1,0 +1,57 @@
+#app{
+  height: 100vh;
+}
+.left{
+  width: 80px;
+}
+
+#home,
+#list{
+  background-color: #304030;
+  height: 100%;
+}
+.left{
+  width: 80px;
+}
+
+.time{
+width: 451px;
+height: 252px;
+text-align: left;
+font: normal normal normal 200px/252px Fjalla One;
+letter-spacing: 0px;
+color: #E8E8E8;
+opacity: 1;
+}
+
+.text{
+width: 272px;
+height: 47px;
+text-align: left;
+font: normal normal medium 32px/47px Noto Sans TC;
+letter-spacing: 0px;
+color: #E8E8E8;
+opacity: 1;
+line-height: center;
+}
+.tomato{
+  width: 1200px;
+}
+
+.play{
+  top: 372px;
+left: 394px;
+width: 64px;
+height: 64px;
+background: #E8E8E8 0% 0% no-repeat padding-box;
+opacity: 1;
+}
+
+.bell{
+  top: 380px;
+left: 474px;
+width: 48px;
+height: 48px;
+border: 2px solid #E8E8E8;
+opacity: 1;
+}
