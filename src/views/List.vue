@@ -16,10 +16,19 @@
         </label>
         </div>
         </div>
-        <div class="search w-100">
-          <input type="text" placeholder="新增待辦事項" class="addinput p-3" @keydown.enter="additem">
-          <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
-        </div>
+        <b-form-group
+          label-for="newinput"
+          class="search w-100"
+        >
+      <b-form-input
+        id="newinput"
+        v-model="newinput"
+        placeholder="新增待辦事項"
+        class="addinput p-3"
+        @keydown.enter="additem"
+      ></b-form-input>
+      <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
+    </b-form-group>
         <ul v-if="num == 1" class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pt-3">
           <div class="mr-3 undonecheck"></div>
@@ -52,6 +61,8 @@
       </b-col>
     </b-row>
     <a href="#/" class="router-link-active"><div class="half"><img class="img" src="../assets/image/tomato--orange.svg" ></div></a>
+  </div>
+  <div>
   </div>
   </div>
 </template>
@@ -175,12 +186,19 @@ color: #E8E8E8;
 export default {
   data () {
     return {
-      num: 1
+      num: 1,
+      newinput: ''
     }
   },
   computed: {
   },
   methods: {
+    additem () {
+      if (this.newinput.length > 2) {
+        this.$store.commit('additem', this.newinput)
+        this.newinput = ''
+      }
+    }
   }
 }
 </script>
