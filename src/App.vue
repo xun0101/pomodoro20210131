@@ -6,7 +6,8 @@
         img(src='./assets/image/icon-list.svg')
       b-nav-item(to='/settings')
         img(src='./assets/image/icon-analysis.svg')
-  router-view
+    router-view(v-if="$route.meta.keepAlive")
+  router-view(v-if="!$route.meta.keepAlive")
 </template>
 
 <!-- <style>

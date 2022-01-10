@@ -16,9 +16,9 @@
         </label>
         </div>
         </div>
-        <div class="search">
-          <input type="text" placeholder="新增待辦事項" class="addinput p-3">
-          <button class="add-btn"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
+        <div class="search w-100">
+          <input type="text" placeholder="新增待辦事項" class="addinput p-3" @keydown.enter="additem">
+          <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
         </div>
         <ul v-if="num == 1" class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pt-3">
@@ -51,7 +51,7 @@
         </div>
       </b-col>
     </b-row>
-    <div class="half"><img class="img" src="../assets/image/tomato--orange.svg" ></div>
+    <a href="#/" class="router-link-active"><div class="half"><img class="img" src="../assets/image/tomato--orange.svg" ></div></a>
   </div>
   </div>
 </template>
@@ -97,6 +97,7 @@ opacity: 1;
   width: 720px;
   overflow: hidden;
 }
+
 #hr{
   color: #000;
     border-top: 1px solid rgba(0,0,0,.1);
