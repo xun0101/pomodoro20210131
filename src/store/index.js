@@ -9,9 +9,6 @@ export default new Vuex.Store({
     items: []
   },
   mutations: {
-    selectSound (state, data) {
-      state.sound = data
-    },
     additem (state, data) {
       state.items.push({
         name: data,

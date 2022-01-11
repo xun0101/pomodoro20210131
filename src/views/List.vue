@@ -194,10 +194,8 @@ export default {
   },
   methods: {
     additem () {
-      if (this.newinput.length > 2) {
-        this.$store.commit('additem', this.newinput)
-        this.newinput = ''
-      }
+      this.$store.commit('additem', this.newinput)
+      this.newinput = ''
     }
   }
 }
