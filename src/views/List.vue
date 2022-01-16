@@ -29,13 +29,14 @@
       ></b-form-input>
       <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
     </b-form-group>
-        <ul v-if="num == 1" class="list-group list-group-flush mt-5">
-        <li class="d-flex align-items-center border-top pt-3">
+    <b-table class="" :items="items" :fields="fields" v-if="num == 1" show-empty><template #empty></template></b-table>
+        <ul :items="items" v-if="num == 1" class="list-group list-group-flush mt-5">
+        <!-- <li class="d-flex align-items-center border-top pt-3">
           <div class="mr-3 undonecheck"></div>
           <div class="mr-auto undonetext list-item">13</div>
           <button class="edit"><img src="../assets/image/icon-edit.svg"></button>
           <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
-        </li>
+        </li> -->
         </ul>
         <ul v-else class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pt-3">
@@ -191,6 +192,9 @@ export default {
     }
   },
   computed: {
+    items () {
+      return this.$store.state.items
+    }
   },
   methods: {
     additem () {
