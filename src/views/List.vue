@@ -29,19 +29,19 @@
       ></b-form-input>
       <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
     </b-form-group>
-    <b-table class="" :items="items" :fields="fields" v-if="num == 1" show-empty><template #empty></template></b-table>
-        <ul :items="items" v-if="num == 1" class="list-group list-group-flush mt-5">
-        <!-- <li class="d-flex align-items-center border-top pt-3">
-          <div class="mr-3 undonecheck"></div>
-          <div class="mr-auto undonetext list-item">13</div>
-          <button class="edit"><img src="../assets/image/icon-edit.svg"></button>
+        <ul v-if="num == 1" class="list-group list-group-flush mt-5">
+        <li class="d-flex align-items-center border-top pb-3 pt-3" v-for="item in items" :key="item.name">
+        <button class="btn undonecheck rounded-circle btn-outline-light mr-3"></button>
+        <div class="mr-auto undonetext list-item">{{item.name}}</div>
+          <button class="edit" @click="edititem(data.index)"><img src="../assets/image/icon-edit.svg"></button>
           <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
-        </li> -->
+        </li>
         </ul>
+
         <ul v-else class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pt-3">
           <div class="mr-3 undonecheck text-white text-center">&#10003;</div>
-          <div class="mr-auto undonetext list-item">456</div>
+          <del class="mr-auto undonetext list-item">456</del>
           <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
         </li>
         </ul>
@@ -158,8 +158,6 @@ opacity: 1;
 .undonecheck{
     width: 24px;
     height: 24px;
-    border-radius: 50%;
-    border: 2px solid #e8e8e8;
     cursor: pointer;
 }
 .undonetext{
@@ -200,6 +198,9 @@ export default {
     additem () {
       this.$store.commit('additem', this.newinput)
       this.newinput = ''
+    },
+    edititem (index) {
+      this.$store.commit('edititem', index)
     }
   }
 }

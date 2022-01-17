@@ -15,6 +15,9 @@ export default new Vuex.Store({
         edit: false,
         model: data
       })
+    },
+    edititem (state, data) {
+      state.items[data].edit = true
     }
   },
   actions: {
