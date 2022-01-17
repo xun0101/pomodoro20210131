@@ -17,7 +17,8 @@ export default new Vuex.Store({
       })
     },
     edititem (state, data) {
-      state.items[data].edit = true
+      console.log(state)
+      state.items[data].edit = !state.items[data].edit
     }
   },
   actions: {

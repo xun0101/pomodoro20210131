@@ -1,22 +1,22 @@
 <template lang="pug">
-#home.d-flex.w-100
-  .d-flex.flex-column.justify-content-between.w-100.align-items-center.mt-5
-    b-row.w-75
-      b-col.d-flex.flex-column.justify-content-between.align-items-center
-        .time.h-100.w-100.d-flex.justify-content-center
-          span
-        .d-flex.align-items-center.justify-content-center.mt-5.w-50
-          button.btn.rounded-circle.btn-outline-light.bell.mx-3
-            img.img-fluid(src='../assets/image/icon-bell.svg')
-          button.btn.rounded-circle.play.mx-3(v-if='status !== 1' @click='start')
-            img(src='../assets/image/icon-play--orange.svg')
-          button.btn.rounded-circle.play.mx-3(v-else @click='pause')
-            img(src='../assets/image/icon-play--green.svg')
-          button.btn.rounded-circle.btn-outline-light.bell.mx-3
-            img.img-fluid(src='../assets/image/icon-delete.svg')
-      b-col.text
-        h1 休息
-    img.tomato(src='../assets/image/tomato--orange.svg')
+//- #home.d-flex.w-100
+//-   .d-flex.flex-column.justify-content-between.w-100.align-items-center.mt-5
+//-     b-row.w-75
+//-       b-col.d-flex.flex-column.justify-content-between.align-items-center
+//-         .time.h-100.w-100.d-flex.justify-content-center
+//-           span
+//-         .d-flex.align-items-center.justify-content-center.mt-5.w-50
+//-           button.btn.rounded-circle.btn-outline-light.bell.mx-3
+//-             img.img-fluid(src='../assets/image/icon-bell.svg')
+//-           button.btn.rounded-circle.play.mx-3(v-if='status !== 1' @click='start')
+//-             img(src='../assets/image/icon-play--orange.svg')
+//-           button.btn.rounded-circle.play.mx-3(v-else @click='pause')
+//-             img(src='../assets/image/icon-play--green.svg')
+//-           button.btn.rounded-circle.btn-outline-light.bell.mx-3
+//-             img.img-fluid(src='../assets/image/icon-delete.svg')
+//-       b-col.text
+//-         h1 休息
+//-     img.tomato(src='../assets/image/tomato--orange.svg')
 </template>
 <!-- <style>
 #home{

@@ -30,10 +30,11 @@
       <button class="add-btn" @click="additem"><img src="../assets/image/icon-cancel.svg" class="add img-fluid"></button>
     </b-form-group>
         <ul v-if="num == 1" class="list-group list-group-flush mt-5">
-        <li class="d-flex align-items-center border-top pb-3 pt-3" v-for="item in items" :key="item.name">
+        <li class="d-flex align-items-center border-top pb-3 pt-3" v-for="(item,keys) in items" :key="keys">
         <button class="btn undonecheck rounded-circle btn-outline-light mr-3"></button>
-        <div class="mr-auto undonetext list-item">{{item.name}}</div>
-          <button class="edit" @click="edititem(data.index)"><img src="../assets/image/icon-edit.svg"></button>
+        <input v-if="item.edit" class="mr-auto undonetext list-item" :value="item.name" >
+        <div  v-else class="mr-auto undonetext list-item">{{item.name}}</div>
+          <button class="edit" @click="edititem(keys)"><img src="../assets/image/icon-edit.svg"></button>
           <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
         </li>
         </ul>
@@ -200,6 +201,7 @@ export default {
       this.newinput = ''
     },
     edititem (index) {
+      console.log(index)
       this.$store.commit('edititem', index)
     }
   }
