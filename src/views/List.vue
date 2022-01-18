@@ -32,18 +32,19 @@
         <ul v-if="num == 1" class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pb-3 pt-3" v-for="(item,keys) in items" :key="keys">
         <button class="btn undonecheck rounded-circle btn-outline-light mr-3"></button>
-        <input v-if="item.edit" class="mr-auto undonetext list-item" :value="item.name" >
-        <div  v-else class="mr-auto undonetext list-item">{{item.name}}</div>
-          <button class="edit" @click="edititem(keys)"><img src="../assets/image/icon-edit.svg"></button>
-          <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
+        <input v-if="item.edit" class="mr-auto w-100 undonetext list-item" v-model="item.model" @keydown.enter="submitedit(keys)">
+        <div  v-else class="mr-auto undonetext list-item" :state="item.state">{{item.name}}</div>
+          <button v-if="item.edit" class="edit text-white" @click="submitedit(keys)">&#10003;</button>
+          <button v-else class="edit" @click="edititem(keys)"><img src="../assets/image/icon-edit.svg"></button>
+          <button v-if="item.edit" class="edit text-white" @click="canceledit(keys)">⭯</button>
+          <button v-else class="edit" @click="delitem(keys)"><img src="../assets/image/icon-cancel.svg"></button>
         </li>
         </ul>
-
         <ul v-else class="list-group list-group-flush mt-5">
-        <li class="d-flex align-items-center border-top pt-3">
+        <li v-for="(item, keys) in finished" :key="keys" class="d-flex align-items-center border-top pt-3">
           <div class="mr-3 undonecheck text-white text-center">&#10003;</div>
-          <del class="mr-auto undonetext list-item">456</del>
-          <button class="edit"><img src="../assets/image/icon-cancel.svg"></button>
+          <del class="mr-auto undonetext list-item">{{ item }}</del>
+          <button class="edit" @click="delfinish(keys)"><img src="../assets/image/icon-cancel.svg"></button>
         </li>
         </ul>
         <hr id="hr">
@@ -107,7 +108,7 @@ opacity: 1;
   bottom: 0;
   right: 0;
   object-position: right bottom;
-  width: 720px;
+  width: 35%;
   overflow: hidden;
 }
 
@@ -192,7 +193,13 @@ export default {
   },
   computed: {
     items () {
-      return this.$store.state.items
+      return this.$store.state.items.map(item => {
+        item.state = item.model
+        return item
+      })
+    },
+    finished () {
+      return this.$store.state.finished
     }
   },
   methods: {
@@ -203,6 +210,18 @@ export default {
     edititem (index) {
       console.log(index)
       this.$store.commit('edititem', index)
+    },
+    delitem (index) {
+      this.$store.commit('delitem', index)
+    },
+    submitedit (index) {
+      this.$store.commit('submitedit', index)
+    },
+    canceledit (index) {
+      this.$store.commit('canceledit', index)
+    },
+    delfinish (index) {
+      this.$store.commit('delfinish', index)
     }
   }
 }
