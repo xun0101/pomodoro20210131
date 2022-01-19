@@ -56,8 +56,8 @@
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 w-50">
           <button class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
-          <button class="btn rounded-circle play mx-3" v-if="status !== 1"><img src="../assets/image/icon-play--orange.svg"></button>
-          <button class="btn rounded-circle play mx-3" v-else><img src="../assets/image/icon-play--green.svg"></button>
+          <button class="btn rounded-circle play mx-3" ><img src="../assets/image/icon-play--orange.svg"></button>
+          <button class="btn rounded-circle play mx-3"><img src="../assets/image/icon-play--green.svg"></button>
           <button  class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
         </div>
@@ -69,119 +69,6 @@
   </div>
   </div>
 </template>
-
-<style>
-.heihgt{
-  height: 100vh;
-}
-.add{
-  transform:rotate(45deg);
-}
-.add-btn{
-  position: absolute;
-  top: 10%;
-left: 90%;
-width: 48px;
-height: 40px;
-background: #F08448 0% 0% no-repeat padding-box;
-border-radius: 71px;
-opacity: 1;
-border: none;
-}
-
-.addinput{
-width: 100%;
-height: 56px;
-background: #FFFFFF 0% 0% no-repeat padding-box;
-border: 1px solid #FFFFFF;
-border-radius: 183px;
-opacity: 1;
-}
-
-.search{
-  width: 560px;
-  position: relative;
-}
-
-.half{
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  object-position: right bottom;
-  width: 35%;
-  overflow: hidden;
-}
-
-#hr{
-  color: #000;
-    border-top: 1px solid rgba(0,0,0,.1);
-    box-shadow: inset 0 10px 10px -10px;
-  -webkit-transform: rotate(270deg);
-  width: 100vh;
-  height: 2px;
-  border: 0;
-  padding-top: 10px;
-  position: absolute;
-  left: 20%;
-  top: 47.5%;
-}
-.img{
-  width: 1440px;
-}
-
-#completed:checked + #abc{
-  display: block;
-}
-
-.h1text{
-  top: 80px;
-left: 120px;
-width: 160px;
-height: 59px;
-text-align: left;
-font: normal normal medium 40px/59px Noto Sans TC;
-letter-spacing: 0px;
-color: #E8E8E8;
-opacity: 1;
-}
-
-.list-item{
-top: 98px;
-left: 544px;
-width: 48px;
-height: 24px;
-text-align: left;
-font: normal normal normal 16px/24px Noto Sans TC Regular;
-letter-spacing: 0px;
-color: #E8E8E8;
-opacity: 1;
-}
-
-.undonecheck{
-    width: 24px;
-    height: 24px;
-    cursor: pointer;
-}
-.undonetext{
-width: 198px;
-height: 24px;
-font: normal normal normal 16px/24px Noto Sans TC Regular;
-}
-
-.edit{
-background: transparent;
-border: none;
-}
-
-.input-text{
-width: 48px;
-height: 24px;
-text-align: left;
-font: normal normal normal 16px/24px Noto Sans TC Regular;
-letter-spacing: 0px;
-color: #E8E8E8;
-}
-</style>
 
 <script>
 export default {
@@ -200,20 +87,6 @@ export default {
     },
     finished () {
       return this.$store.state.finished
-    },
-    status () {
-      return this.$store.state.status
-    },
-    timeleft () {
-      return this.$store.state.timeleft
-    },
-    timeText () {
-      const m = Math.floor(this.timeleft / 60).toString().padStart(2, '0')
-      const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
-      return `${m} : ${s}`
-    },
-    timer () {
-      return this.$store.state.timer
     }
   },
   methods: {
@@ -237,24 +110,6 @@ export default {
     delfinish (index) {
       this.$store.commit('delfinish', index)
     }
-    // start () {
-    //   if (this.status === 0 && this.items.length > 0) {
-    //     this.$store.commit('start')
-    //   }
-    //   if (this.current.length) {
-    //     this.status = 1
-    //     this.timer = setInterval(() => {
-    //       this.$store.commit('countdown')
-    //       if (this.timeleft <= -1) {
-    //         this.finish(false)
-    //       }
-    //     }, 1000)
-    //   }
-    // },
-    // pause () {
-    //   this.status = 2
-    //   clearInterval(this.timer)
-    // }
   }
 }
 </script>

@@ -13,9 +13,7 @@ export default new Vuex.Store({
     current: '',
     finished: [],
     timeleft: time,
-    break: false,
-    status: 0,
-    timer: 0
+    break: false
   },
   mutations: {
     additem (state, data) {
@@ -40,29 +38,11 @@ export default new Vuex.Store({
       state.items[data].model = state.items[data].name
       state.items[data].edit = false
     },
-    // timeText (state) {
-    //   const m = Math.floor(state.timeleft / 60).toString().padStart(2, '0')
-    //   const s = Math.floor(state.timeleft % 60).toString().padStart(2, '0')
-    //   return `${m} : ${s}`
-    // },
-    start (state, data) {
-      if (state.current.length) {
-        state.status = 1
-        state.timer = setInterval(() => {
-          state.$store.commit('countdown')
-          if (state.timeleft <= -1) {
-            state.finish(false)
-          }
-        }, 1000)
-      }
+    start (state) {
       state.current = state.break ? '休息一下' : state.items.shift().name
     },
     countdown (state) {
       state.timeleft--
-    },
-    pause (state) {
-      state.status = 2
-      clearInterval(state.timer)
     },
     finish (state) {
       if (!state.break) {
@@ -73,7 +53,6 @@ export default new Vuex.Store({
         state.break = !state.break
       }
       state.timeleft = state.break ? timebreak : time
-      console.log(state.finished, '1')
     },
     delfinish (state, data) {
       state.finished.splice(data, 1)
