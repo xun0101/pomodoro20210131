@@ -72,12 +72,12 @@ opacity: 1;
 
 <script>
 export default {
-  data () {
-    return {
-      status: 0,
-      timer: 0
-    }
-  },
+  // data () {
+  //   return {
+  //     status: 0,
+  //     timer: 0
+  //   }
+  // },
   computed: {
     current () {
       return this.$store.state.current
@@ -95,6 +95,9 @@ export default {
       const m = Math.floor(this.timeleft / 60).toString().padStart(2, '0')
       const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
       return `${m} : ${s}`
+    },
+    status () {
+      return this.$store.state.status
     }
   },
   methods: {
@@ -102,33 +105,41 @@ export default {
       if (this.status === 0 && this.items.length > 0) {
         this.$store.commit('start')
       }
-      if (this.current.length) {
-        this.status = 1
-        this.timer = setInterval(() => {
-          this.$store.commit('countdown')
-          if (this.timeleft <= -1) {
-            this.finish(false)
-          }
-        }, 1000)
-      }
     },
     pause () {
-      this.status = 2
-      clearInterval(this.timer)
-    },
-    finish (skip) {
-      clearInterval(this.timer)
-      this.status = 0
-      this.$store.commit('finish')
-      if (!skip) {
-        const audio = new Audio()
-        audio.src = require('@/assets/' + this.$store.state.sound)
-        audio.play()
-      }
-      if (this.items.length > 0) {
-        this.start()
-      }
+      this.$store.commit('paus')
     }
+    // start () {
+    //   if (this.status === 0 && this.items.length > 0) {
+    //     this.$store.commit('start')
+    //   }
+    //   if (this.current.length) {
+    //     this.status = 1
+    //     this.timer = setInterval(() => {
+    //       this.$store.commit('countdown')
+    //       if (this.timeleft <= -1) {
+    //         this.finish(false)
+    //       }
+    //     }, 1000)
+    //   }
+    // },
+    // pause () {
+    //   this.status = 2
+    //   clearInterval(this.timer)
+    // },
+    // finish (skip) {
+    //   clearInterval(this.timer)
+    //   this.status = 0
+    //   this.$store.commit('finish')
+    //   if (!skip) {
+    //     const audio = new Audio()
+    //     audio.src = require('@/assets/' + this.$store.state.sound)
+    //     audio.play()
+    //   }
+    //   if (this.items.length > 0) {
+    //     this.start()
+    //   }
+    // }
   }
 }
 </script>
