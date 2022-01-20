@@ -41,7 +41,18 @@ export default new Vuex.Store({
       state.items[data].edit = false
     },
     start (state) {
-      state.current = state.break ? '休息一下' : state.items.shift().name
+      if (state.status === 0 && state.items.length > 0) {
+        state.current = state.break ? '休息一下' : state.items.shift().name
+      }
+      if (state.current.length) {
+        state.status = 1
+        state.timer = setInterval(() => {
+          state.timeleft--
+          if (state.timeleft <= -1) {
+            this.finish(false)
+          }
+        }, 1000)
+      }
     },
     countdown (state) {
       state.timeleft--
@@ -65,6 +76,9 @@ export default new Vuex.Store({
     }
   },
   actions: {
+    start (context, payload) {
+      context.commit('start', payload)
+    }
   },
   modules: {
   }

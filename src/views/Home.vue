@@ -21,12 +21,12 @@
 
 <script>
 export default {
-  data () {
-    return {
-      status: 0,
-      timer: 0
-    }
-  },
+  // data () {
+  //   return {
+  //     status: 0,
+  //     timer: 0
+  //   }
+  // },
   computed: {
     current () {
       return this.$store.state.current
@@ -44,23 +44,26 @@ export default {
       const m = Math.floor(this.timeleft / 60).toString().padStart(2, '0')
       const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
       return `${m} : ${s}`
+    },
+    status () {
+      return this.$store.state.status
     }
   },
   methods: {
-    start () {
-      if (this.status === 0 && this.items.length > 0) {
-        this.$store.commit('start')
-      }
-      if (this.current.length) {
-        this.status = 1
-        this.timer = setInterval(() => {
-          this.$store.commit('countdown')
-          if (this.timeleft <= -1) {
-            this.finish(false)
-          }
-        }, 1000)
-      }
-    },
+    // start () {
+    //   if (this.status === 0 && this.items.length > 0) {
+    //     this.$store.commit('start')
+    //   }
+    //   if (this.current.length) {
+    //     this.status = 1
+    //     this.timer = setInterval(() => {
+    //       this.$store.commit('countdown')
+    //       if (this.timeleft <= -1) {
+    //         this.finish(false)
+    //       }
+    //     }, 1000)
+    //   }
+    // },
     pause () {
       this.status = 2
       clearInterval(this.timer)
@@ -77,6 +80,9 @@ export default {
       if (this.items.length > 0) {
         this.start()
       }
+    },
+    start () {
+      this.$store.dispatch('start')
     }
   }
 }

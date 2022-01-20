@@ -56,7 +56,7 @@
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 w-50">
           <button class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
-          <button class="btn rounded-circle play mx-3" ><img src="../assets/image/icon-play--orange.svg"></button>
+          <button class="btn rounded-circle play mx-3" @click="start" ><img src="../assets/image/icon-play--orange.svg"></button>
           <button class="btn rounded-circle play mx-3"><img src="../assets/image/icon-play--green.svg"></button>
           <button  class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
@@ -126,6 +126,9 @@ export default {
     },
     finishedit (index) {
       this.$store.commit('finishedit', index)
+    },
+    start () {
+      this.$store.dispatch('start')
     }
   }
 }
