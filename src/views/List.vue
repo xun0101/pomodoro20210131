@@ -2,7 +2,7 @@
   <div id="list" class="d-flex w-100">
 <div class="d-flex flex-column justify-content-between  w-100 p-5">
     <b-row class="heihgt">
-      <b-col cols="4">
+      <b-col md="4">
         <div class="d-flex justify-content-between align-items-center">
         <h1 class="h1text">待辦清單</h1>
         <div class="d-flex w-25 justify-content-between">
@@ -31,7 +31,7 @@
     </b-form-group>
         <ul v-if="num == 1" class="list-group list-group-flush mt-5">
         <li class="d-flex align-items-center border-top pb-3 pt-3" v-for="(item,keys) in items" :key="keys">
-        <button class="btn undonecheck rounded-circle btn-outline-light mr-3"></button>
+        <button class="btn undonecheck rounded-circle btn-outline-light mr-3" @click="finishedit(keys)"></button>
         <input v-if="item.edit" class="mr-auto w-100 undonetext list-item" v-model="item.model" @keydown.enter="submitedit(keys)">
         <div  v-else class="mr-auto undonetext list-item" :state="item.state">{{item.name}}</div>
           <button v-if="item.edit" class="edit text-white" @click="submitedit(keys)">&#10003;</button>
@@ -47,7 +47,7 @@
           <button class="edit" @click="delfinish(keys)"><img src="../assets/image/icon-cancel.svg"></button>
         </li>
         </ul>
-        <hr id="hr">
+        <hr id="hr" class="d-none d-md-block">
       </b-col>
       <b-col class="d-flex flex-column justify-content-between">
         <div class="d-flex flex-column align-items-center">
@@ -87,6 +87,20 @@ export default {
     },
     finished () {
       return this.$store.state.finished
+    },
+    current () {
+      return this.$store.state.current
+    },
+    currentText () {
+      return this.current.length > 0 ? this.current : this.items.length > 0 ? '點擊開始' : '沒有事項'
+    },
+    timeleft () {
+      return this.$store.state.timeleft
+    },
+    timeText () {
+      const m = Math.floor(this.timeleft / 60).toString().padStart(2, '0')
+      const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
+      return `${m} : ${s}`
     }
   },
   methods: {
@@ -109,6 +123,9 @@ export default {
     },
     delfinish (index) {
       this.$store.commit('delfinish', index)
+    },
+    finishedit (index) {
+      this.$store.commit('finishedit', index)
     }
   }
 }

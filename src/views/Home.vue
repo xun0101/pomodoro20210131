@@ -16,7 +16,7 @@
             img.img-fluid(src='../assets/image/icon-delete.svg')
       b-col.text
         h1 {{ currentText }}
-    img.tomato(src='../assets/image/tomato--orange.svg')
+    img.tomato(src='../assets/image/tomato--orange.svg').d-none.d-md-block
 </template>
 
 <script>

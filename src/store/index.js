@@ -13,7 +13,9 @@ export default new Vuex.Store({
     current: '',
     finished: [],
     timeleft: time,
-    break: false
+    break: false,
+    status: 0,
+    timer: 0
   },
   mutations: {
     additem (state, data) {
@@ -56,6 +58,10 @@ export default new Vuex.Store({
     },
     delfinish (state, data) {
       state.finished.splice(data, 1)
+    },
+    finishedit (state, data) {
+      state.finished.push(state.items[data].name)
+      state.items.splice(data, 1)
     }
   },
   actions: {
