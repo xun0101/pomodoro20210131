@@ -3,6 +3,37 @@
 <div class="d-flex flex-column justify-content-between  w-100 p-5">
     <b-row class="heihgt">
       <b-col md="4">
+        <b-row>
+        <h1 class="h1text w-100">專注度分析</h1>
+          <b-col class="box-text" md="5">
+            <h6>今日</h6>
+            <div class="d-flex align-items-center text-center border">
+          <div class="box w-100">
+            <h1 class="h1text1">{{items.length}}</h1>
+            <p class="box-text">待辦事項</p>
+          </div>
+          <hr class="hr">
+          <div class="box w-100">
+            <h1 class="h1text2">{{finished.length}}</h1>
+            <p class="box-text">完成事項</p>
+          </div>
+        </div>
+          </b-col>
+          <b-col class="box-text" md="5">
+            <h6>本周</h6>
+            <div class="d-flex align-items-center text-center border">
+          <div class="box w-100">
+            <h1 class="h1text1">{{items.length}}</h1>
+            <p class="box-text">待辦事項</p>
+          </div>
+          <hr class="hr">
+          <div class="box w-100 ">
+            <h1 class="h1text2">{{finished.length}}</h1>
+            <p class="box-text">完成事項</p>
+          </div>
+        </div>
+          </b-col>
+        </b-row>
         <hr id="hr">
       </b-col>
       <b-col class="d-flex flex-column justify-content-between">
@@ -11,10 +42,10 @@
         <span>{{timeText}}</span>
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 w-50">
-          <button class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
+          <button class="btn rounded-circle btn-outline-light bell mx-3" @click="pause0"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
           <button class="btn rounded-circle play mx-3" @click="start" v-if="$store.state.status !== 1"><img src="../assets/image/icon-play--orange.svg"></button>
           <button class="btn rounded-circle play mx-3"  @click="pause" v-else><img src="../assets/image/icon-play--green.svg"></button>
-          <button  class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
+          <button  class="btn rounded-circle btn-outline-light bell mx-3" @click="finish"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
         </div>
       </b-col>
@@ -26,9 +57,17 @@
   </div>
 </template>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
+<script src="https://unpkg.com/vue-chartjs/dist/vue-chartjs.min.js"></script>
 <script>
 export default {
   computed: {
+    finished () {
+      return this.$store.state.finished
+    },
+    items () {
+      return this.$store.state.items
+    },
     timeleft () {
       return this.$store.state.timeleft
     },
@@ -39,24 +78,17 @@ export default {
     }
   },
   methods: {
-    finish (skip) {
-      clearInterval(this.timer)
-      this.status = 0
-      this.$store.commit('finish')
-      if (!skip) {
-        const audio = new Audio()
-        audio.src = require('@/assets/' + this.$store.state.sound)
-        audio.play()
-      }
-      if (this.items.length > 0) {
-        this.start()
-      }
-    },
     start () {
       this.$store.dispatch('start')
     },
     pause () {
       this.$store.dispatch('pause')
+    },
+    pause0 () {
+      this.$store.dispatch('pause0')
+    },
+    finish () {
+      this.$store.dispatch('finish')
     }
   }
 }

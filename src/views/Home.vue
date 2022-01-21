@@ -6,7 +6,7 @@
         .time.h-100.w-100.d-flex.justify-content-center
           span {{ timeText }}
         .d-flex.align-items-center.justify-content-center.mt-5.w-50
-          b-btn.rounded-circle.btn-outline-light.bell.mx-3
+          b-btn.rounded-circle.btn-outline-light.bell.mx-3(@click="pause0")
             img.img-fluid(src='../assets/image/icon-bell.svg')
           b-btn.rounded-circle.play.mx-3(v-if="$store.state.status !== 1" @click="start")
             img(src='../assets/image/icon-play--orange.svg')
@@ -45,9 +45,6 @@ export default {
       const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
       return `${m} : ${s}`
     }
-    // status () {
-    //   return this.$store.state.status
-    // }
   },
   methods: {
     // start () {
@@ -83,18 +80,15 @@ export default {
     // },
     start () {
       this.$store.dispatch('start')
-      if (this.timeleft <= -1) {
-        this.finish(false)
-      }
     },
     pause () {
       this.$store.dispatch('pause')
     },
+    pause0 () {
+      this.$store.dispatch('pause0')
+    },
     finish () {
       this.$store.dispatch('finish')
-      if (this.items.length > 0) {
-        this.start()
-      }
     }
   }
 }

@@ -58,7 +58,7 @@
           <button class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
           <button class="btn rounded-circle play mx-3" @click="start" v-if="$store.state.status !== 1"><img src="../assets/image/icon-play--orange.svg"></button>
           <button class="btn rounded-circle play mx-3" @click="pause" v-else><img src="../assets/image/icon-play--green.svg"></button>
-          <button  class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
+          <button  class="btn rounded-circle btn-outline-light bell mx-3" @click="finish"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
         </div>
       </b-col>
@@ -126,6 +126,12 @@ export default {
     },
     pause () {
       this.$store.dispatch('pause')
+    },
+    pause0 () {
+      this.$store.dispatch('pause0')
+    },
+    finish () {
+      this.$store.dispatch('finish')
     }
   }
 }
