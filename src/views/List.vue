@@ -56,8 +56,8 @@
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 w-50">
           <button class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
-          <button class="btn rounded-circle play mx-3" @click="start" ><img src="../assets/image/icon-play--orange.svg"></button>
-          <button class="btn rounded-circle play mx-3"><img src="../assets/image/icon-play--green.svg"></button>
+          <button class="btn rounded-circle play mx-3" @click="start" v-if="$store.state.status !== 1"><img src="../assets/image/icon-play--orange.svg"></button>
+          <button class="btn rounded-circle play mx-3" @click="pause" v-else><img src="../assets/image/icon-play--green.svg"></button>
           <button  class="btn rounded-circle btn-outline-light bell mx-3"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
         </div>
@@ -87,12 +87,6 @@ export default {
     },
     finished () {
       return this.$store.state.finished
-    },
-    current () {
-      return this.$store.state.current
-    },
-    currentText () {
-      return this.current.length > 0 ? this.current : this.items.length > 0 ? '點擊開始' : '沒有事項'
     },
     timeleft () {
       return this.$store.state.timeleft
@@ -129,6 +123,9 @@ export default {
     },
     start () {
       this.$store.dispatch('start')
+    },
+    pause () {
+      this.$store.dispatch('pause')
     }
   }
 }

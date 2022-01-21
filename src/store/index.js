@@ -40,24 +40,12 @@ export default new Vuex.Store({
       state.items[data].model = state.items[data].name
       state.items[data].edit = false
     },
-    start (state) {
-      if (state.status === 0 && state.items.length > 0) {
-        state.current = state.break ? '休息一下' : state.items.shift().name
-      }
-      if (state.current.length) {
-        state.status = 1
-        state.timer = setInterval(() => {
-          state.timeleft--
-          if (state.timeleft <= -1) {
-            this.finish(false)
-          }
-        }, 1000)
-      }
-    },
     countdown (state) {
       state.timeleft--
     },
-    finish (state) {
+    finish (state, skip) {
+      clearInterval(state.timer)
+      state.status = 0
       if (!state.break) {
         state.finished.push(state.current)
       }
@@ -66,6 +54,32 @@ export default new Vuex.Store({
         state.break = !state.break
       }
       state.timeleft = state.break ? timebreak : time
+      if (!skip) {
+        const audio = new Audio()
+        audio.src = require('@/assets/' + state.sound)
+        audio.play()
+      }
+      // if (state.items.length > 0) {
+      //   this.start()
+      // }
+    },
+    start (state) {
+      if (state.status === 0 && state.items.length > 0) {
+        state.current = state.break ? '休息一下' : state.items.shift().name
+      }
+      if (state.current.length) {
+        state.status = 1
+        state.timer = setInterval(() => {
+          state.timeleft--
+          // if (state.timeleft <= -1) {
+          //   this.finish(false)
+          // }
+        }, 1000)
+      }
+    },
+    pause (state) {
+      state.status = 2
+      clearInterval(state.timer)
     },
     delfinish (state, data) {
       state.finished.splice(data, 1)
@@ -78,6 +92,12 @@ export default new Vuex.Store({
   actions: {
     start (context, payload) {
       context.commit('start', payload)
+    },
+    pause (context, payload) {
+      context.commit('pause', payload)
+    },
+    finish (context, payload) {
+      context.commit('finish', payload)
     }
   },
   modules: {

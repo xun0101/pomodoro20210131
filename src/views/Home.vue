@@ -8,7 +8,7 @@
         .d-flex.align-items-center.justify-content-center.mt-5.w-50
           b-btn.rounded-circle.btn-outline-light.bell.mx-3
             img.img-fluid(src='../assets/image/icon-bell.svg')
-          b-btn.rounded-circle.play.mx-3(v-if="status !== 1" @click="start")
+          b-btn.rounded-circle.play.mx-3(v-if="$store.state.status !== 1" @click="start")
             img(src='../assets/image/icon-play--orange.svg')
           b-btn.rounded-circle.play.mx-3(v-else @click="pause")
             img(src='../assets/image/icon-play--green.svg')
@@ -44,10 +44,10 @@ export default {
       const m = Math.floor(this.timeleft / 60).toString().padStart(2, '0')
       const s = Math.floor(this.timeleft % 60).toString().padStart(2, '0')
       return `${m} : ${s}`
-    },
-    status () {
-      return this.$store.state.status
     }
+    // status () {
+    //   return this.$store.state.status
+    // }
   },
   methods: {
     // start () {
@@ -64,25 +64,37 @@ export default {
     //     }, 1000)
     //   }
     // },
-    pause () {
-      this.status = 2
-      clearInterval(this.timer)
-    },
-    finish (skip) {
-      clearInterval(this.timer)
-      this.status = 0
-      this.$store.commit('finish')
-      if (!skip) {
-        const audio = new Audio()
-        audio.src = require('@/assets/' + this.$store.state.sound)
-        audio.play()
+    // pause () {
+    //   this.status = 2
+    //   clearInterval(this.timer)
+    // },
+    // finish (skip) {
+    //   clearInterval(this.timer)
+    //   this.status = 0
+    //   this.$store.commit('finish')
+    //   if (!skip) {
+    //     const audio = new Audio()
+    //     audio.src = require('@/assets/' + this.$store.state.sound)
+    //     audio.play()
+    //   }
+    //   if (this.items.length > 0) {
+    //     this.start()
+    //   }
+    // },
+    start () {
+      this.$store.dispatch('start')
+      if (this.timeleft <= -1) {
+        this.finish(false)
       }
+    },
+    pause () {
+      this.$store.dispatch('pause')
+    },
+    finish () {
+      this.$store.dispatch('finish')
       if (this.items.length > 0) {
         this.start()
       }
-    },
-    start () {
-      this.$store.dispatch('start')
     }
   }
 }
