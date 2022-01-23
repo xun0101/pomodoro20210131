@@ -16,7 +16,9 @@ export default new Vuex.Store({
     timeleft: time,
     break: false,
     status: 0,
-    timer: 0
+    timer: 0,
+    pause: 0,
+    audio: new Audio(require('../assets/alarm.mp3'))
   },
   mutations: {
     additem (state, data) {
@@ -53,6 +55,7 @@ export default new Vuex.Store({
       state.current = ''
       if (state.items.length > 0) {
         state.break = !state.break
+        this.commit('start')
       }
       state.timeleft = state.break ? timebreak : time
       if (!skip) {
@@ -69,20 +72,8 @@ export default new Vuex.Store({
         state.status = 1
         state.timer = setInterval(() => {
           state.timeleft--
-          if (state.timeleft <= -1) {
-            clearInterval(state.timer)
-            state.status = 0
-            if (!state.break) {
-              state.finished.push(state.current)
-            }
-            state.current = ''
-            if (state.items.length > 0) {
-              state.break = !state.break
-            }
-            state.timeleft = state.break ? timebreak : time
-            const audio = new Audio()
-            audio.src = require('@/assets/' + state.sound)
-            audio.play()
+          if (state.timeleft <= 0) {
+            this.commit('finish')
           }
         }, 1000)
       }
@@ -91,7 +82,15 @@ export default new Vuex.Store({
       state.status = 2
       clearInterval(state.timer)
     },
-    pause0 (audio) {
+    pause0 (state) {
+      state.pause = 0
+      // this.commit('finish')
+      state.audio.pause()
+    },
+    pause1 (state) {
+      state.pause = 1
+      // this.commit('finish')
+      state.audio.play()
     },
     delfinish (state, data) {
       state.finished.splice(data, 1)
@@ -102,18 +101,6 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    start (context, payload) {
-      context.commit('start', payload)
-    },
-    pause (context, payload) {
-      context.commit('pause', payload)
-    },
-    finish (context, payload) {
-      context.commit('finish', payload)
-    },
-    pause0 (context, payload) {
-      context.commit('pause0', payload)
-    }
   },
   modules: {
   },

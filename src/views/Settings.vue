@@ -33,6 +33,7 @@
           </div>
         </div>
           </b-col>
+          <b-col class="mt-5"><ChartComponent :customChartData="customChartData" :options="options"></ChartComponent></b-col>
         </b-row>
         <hr id="hr">
       </b-col>
@@ -42,10 +43,10 @@
         <span>{{timeText}}</span>
         </div>
         <div class="d-flex align-items-center justify-content-center mt-5 w-50">
-          <button class="btn rounded-circle btn-outline-light bell mx-3" @click="pause0"><img class="img-fluid" src="../assets/image/icon-bell.svg"></button>
+          <PauseComponent></PauseComponent>
           <button class="btn rounded-circle play mx-3" @click="start" v-if="$store.state.status !== 1"><img src="../assets/image/icon-play--orange.svg"></button>
           <button class="btn rounded-circle play mx-3"  @click="pause" v-else><img src="../assets/image/icon-play--green.svg"></button>
-          <button  class="btn rounded-circle btn-outline-light bell mx-3" @click="finish"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
+          <button  class="btn rounded-circle bell mx-3" @click="finish"><img class="img-fluid" src="../assets/image/icon-delete.svg"></button>
         </div>
         </div>
       </b-col>
@@ -58,6 +59,9 @@
 </template>
 
 <script>
+import PauseComponent from '../components/Pause'
+import ChartComponent from '../components/Chart'
+
 export default {
   computed: {
     finished () {
@@ -75,19 +79,54 @@ export default {
       return `${m} : ${s}`
     }
   },
+  data () {
+    return {
+      customChartData: {
+        labels: [
+          '已完成',
+          '未完成'
+        ],
+        datasets: [
+          {
+            label: '完成度',
+            data: [this.$store.state.finished.length, this.$store.state.items.length],
+            backgroundColor: ['#FF6A1A', '#6C904D']
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        title: {
+          display: true,
+          text: '分析'
+        }
+      }
+    }
+  },
   methods: {
     start () {
-      this.$store.dispatch('start')
+      this.$store.commit('start')
+      console.log(this.$store.state.items.length)
     },
     pause () {
-      this.$store.dispatch('pause')
+      this.$store.commit('pause')
     },
     pause0 () {
-      this.$store.dispatch('pause0')
+      this.$store.commit('pause0')
     },
-    finish () {
-      this.$store.dispatch('finish')
+    pause1 () {
+      this.$store.commit('pause1')
+      console.log('123')
+    },
+    finish (skip) {
+      console.log(123)
+      this.$store.commit('finish')
     }
+  },
+  components: {
+    PauseComponent,
+    ChartComponent
   }
 }
 </script>

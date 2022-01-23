@@ -6,8 +6,7 @@
         .time.h-100.w-100.d-flex.justify-content-center
           span {{ timeText }}
         .d-flex.align-items-center.justify-content-center.mt-5.w-50
-          b-btn.rounded-circle.btn-outline-light.bell.mx-3(@click="pause0")
-            img.img-fluid(src='../assets/image/icon-bell.svg')
+          PauseComponent
           b-btn.rounded-circle.play.mx-3(v-if="$store.state.status !== 1" @click="start")
             img(src='../assets/image/icon-play--orange.svg')
           b-btn.rounded-circle.play.mx-3(v-else @click="pause")
@@ -20,13 +19,12 @@
 </template>
 
 <script>
+import PauseComponent from '../components/Pause'
+
 export default {
-  // data () {
-  //   return {
-  //     status: 0,
-  //     timer: 0
-  //   }
-  // },
+  components: {
+    PauseComponent
+  },
   computed: {
     current () {
       return this.$store.state.current
@@ -47,48 +45,14 @@ export default {
     }
   },
   methods: {
-    // start () {
-    //   if (this.status === 0 && this.items.length > 0) {
-    //     this.$store.commit('start')
-    //   }
-    //   if (this.current.length) {
-    //     this.status = 1
-    //     this.timer = setInterval(() => {
-    //       this.$store.commit('countdown')
-    //       if (this.timeleft <= -1) {
-    //         this.finish(false)
-    //       }
-    //     }, 1000)
-    //   }
-    // },
-    // pause () {
-    //   this.status = 2
-    //   clearInterval(this.timer)
-    // },
-    // finish (skip) {
-    //   clearInterval(this.timer)
-    //   this.status = 0
-    //   this.$store.commit('finish')
-    //   if (!skip) {
-    //     const audio = new Audio()
-    //     audio.src = require('@/assets/' + this.$store.state.sound)
-    //     audio.play()
-    //   }
-    //   if (this.items.length > 0) {
-    //     this.start()
-    //   }
-    // },
     start () {
-      this.$store.dispatch('start')
+      this.$store.commit('start')
     },
     pause () {
-      this.$store.dispatch('pause')
-    },
-    pause0 () {
-      this.$store.dispatch('pause0')
+      this.$store.commit('pause')
     },
     finish () {
-      this.$store.dispatch('finish')
+      this.$store.commit('finish')
     }
   }
 }

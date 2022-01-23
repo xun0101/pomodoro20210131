@@ -57,6 +57,15 @@ border: 2px solid #E8E8E8;
 background: transparent;
 }
 
+.bell2{
+  top: 380px;
+left: 474px;
+width: 48px;
+height: 48px;
+border: 2px solid gray;
+background: gray;
+}
+
 .heihgt{
   height: 100vh;
 }

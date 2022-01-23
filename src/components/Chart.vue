@@ -1,20 +1,23 @@
 <script>
-import { Line } from 'vue-chartjs'
+import { Bar } from 'vue-chartjs'
 
 export default {
-  extends: Line,
-  props: {
-    chartdata: {
-      type: Object,
-      default: null
-    },
-    options: {
-      type: Object,
-      default: null
-    }
-  },
+  extends: Bar,
+  props: ['customChartData', 'options'],
   mounted () {
-    this.renderchart(this.chartdata, this.options)
+    this.renderChart(this.customChartData, this.options)
+  },
+  watch: {
+    customChartData (value) {
+      if (value) {
+        // 測試新增一筆數據時的程式碼
+        // this.renderChart(this.customChartDatas, this.options);
+
+        // delegate update method in __prtot__
+        // 測試更新一筆數據時的程式碼
+        this.$data._chart.finish()
+      }
+    }
   }
 }
 </script>

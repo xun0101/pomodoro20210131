@@ -9,12 +9,3 @@
   keep-alive
     router-view
 </template>
-
-<!-- <style>
-#app{
-  height: 100vh;
-}
-.left{
-  width: 80px;
-}
-</style> -->
