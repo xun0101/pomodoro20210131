@@ -41,7 +41,7 @@
           .time.w-100.d-flex.justify-content-center
             span {{ timeText }}
           .d-flex.align-items-center.justify-content-center.mt-5.w-50
-            pausecomponent
+            PauseComponent
             button.btn.rounded-circle.play.mx-3(@click='start' v-if='$store.state.status !== 1')
               img(src='../assets/image/icon-play--orange.svg')
             button.btn.rounded-circle.play.mx-3(@click='pause' v-else)
