@@ -1,5 +1,5 @@
 <template lang="pug">
-#app.d-flex
+#app.d-flex.overflow-hidden
   b-navbar.d-flex.flex-column.left(toggleable='lg' type='dark' variant='light')
     b-navbar-nav.d-flex.justify-content-center.h-100.flex-column
       b-nav-item(to='/list')

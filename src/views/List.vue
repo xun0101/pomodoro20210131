@@ -3,7 +3,7 @@
   .d-flex.flex-column.justify-content-between.w-100.p-5
     b-row.heihgt
       b-col(md='4')
-        .d-flex.justify-content-between.align-items-center
+        .d-flex.justify-content-between.align-items-center.title
           h1.h1text 待辦清單
           .d-flex.w-25.justify-content-between
             label.input-text(for='undone')
@@ -14,11 +14,11 @@
               input#completed.d-none(name='list' value='completed' type='radio' @click='num = 2')
               | 已完成
 
-        b-form-group.search.w-100(label-for='newinput')
+        b-form-group.search(label-for='newinput')
           b-form-input#newinput.addinput.p-3(v-model='newinput' placeholder='新增待辦事項' @keydown.enter='additem')
           button.add-btn(@click='additem')
             img.add.img-fluid(src='../assets/image/icon-cancel.svg')
-        ul.list-group.list-group-flush.mt-5(v-if='num == 1')
+        ul.list-group.list-group-flush.mt-5.list.overflow-auto(v-if='num == 1')
           li.d-flex.align-items-center.border-top.pb-3.pt-3(v-for='(item,keys) in items' :key='keys')
             button.btn.undonecheck.rounded-circle.btn-outline-light.mr-3(@click='finishedit(keys)')
             input.mr-auto.w-100.undonetext.list-item(v-if='item.edit' v-model='item.model' @keydown.enter='submitedit(keys)')
@@ -29,7 +29,7 @@
             button.edit.text-white(v-if='item.edit' @click='canceledit(keys)') ⭯
             button.edit(v-else @click='delitem(keys)')
               img(src='../assets/image/icon-cancel.svg')
-        ul.list-group.list-group-flush.mt-5(v-else)
+        ul.list-group.list-group-flush.mt-5.list.overflow-auto(v-else)
           li.d-flex.align-items-center.border-top.pt-3(v-for='(item, keys) in finished' :key='keys')
             .mr-3.undonecheck.text-white.text-center ✓
             del.mr-auto.undonetext.list-item {{ item }}

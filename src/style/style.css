@@ -92,12 +92,36 @@ border: 1px solid #FFFFFF;
 border-radius: 183px;
 opacity: 1;
 }
-
-.search{
-  width: 560px;
-  position: relative;
+.title {
+  width: 95%;
 }
 
+.search{
+  width: 95%;
+  position: relative;
+}
+.list {
+  width: 95%;
+  height: 75vh;
+}
+.list::-webkit-scrollbar {
+  width: 7px;
+}
+.list::-webkit-scrollbar-button {
+  background: transparent;
+  border-radius: 4px;
+}
+.list::-webkit-scrollbar-track-piece {
+  background: transparent;
+}
+.list::-webkit-scrollbar-thumb {
+  border-radius: 4px;
+  background-color: rgba(40, 83, 66, 0.829);
+  border: 1px solid slategrey;
+}
+.list::-webkit-scrollbar-track {
+  box-shadow: transparent;
+}
 .half{
   position: absolute;
   bottom: 0;
